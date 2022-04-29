@@ -8,7 +8,7 @@ public class Node {
 
     Node(int data, Node next) {
         this.data = data;
-        this.next = next;
+        this.next= next;
     }
 
     Node() {
@@ -16,7 +16,7 @@ public class Node {
 
     public static void Print(Node n) {
         for (Node i = n; i != null; i = i.next) {
-            System.out.println(i.data);
+            System.out.print(i.data+" ");
         }
     }
 
@@ -29,19 +29,30 @@ public class Node {
         return length;
     }
 
-    public void deleteThirdNode(Node n) {
-        Node i;
-        int j = 0;
-        for (i = n; i.next.next != null; i = i.next) {
-            if (j == 3) {
-                i = null;
-                break;
-            }
-            j++;
+    public static void deleteThirdNode(Node n) {
+        Node i=n;
+       //System.out.println( Length(i));
+      //  i.next.next=i.next.next.next;
+        // int j = 0;
+        // for (i = n; i.next != null; i = i.next) {
+        //     if (j == 2) {
+        //         i.next=i.next.next;
+        //         break;
+        //     }
+        //     j++;
+    //     // }
+        for (int j = 1; j <= 2; j++) {
+            i=i.next;
         }
-    }
+       i=i.next.next;
+        System.out.println();
+        System.out.println("\nAfter deleting third node");
+        //Print(i.Length(n));
+           // System.out.println(Length(n));
+            Print(n);
+        }
 
-    public void InsertAtMid(Node n, int data) {
+    public static void InsertAtMid(Node n, int data) {
         Node i;
         int j = 0;
         int len = Length(n);
@@ -53,8 +64,8 @@ public class Node {
             j++;
         }
         Node temp = new Node(data, i.next);
-        i.next = temp;
-
+       i.next = temp;
+                Print(i);
     }
 
     public static void main(String[] args) {
@@ -65,13 +76,13 @@ public class Node {
         n.next = new Node(90); // Start.next=new Node(2);
         n = n.next; // Start.next.next=new Node(3);
         n.next = new Node(120);
-
-        Node start2 = new Node(150);
-        Node p = start2;
-        p.next = new Node(180);
-        p = p.next;
-        p.next = new Node(210);
-        p = p.next;
-
+        
+        System.out.println("Length of Linked List is " + Length(start));
+        ///System.out.println("Deleting third node");
+        Print(start);
+       //deleteThirdNode(start);
+        //  System.out.println("\nAfter deleting third node");
+        // Print(start);
+    InsertAtMid(start, 50);    
     }
 }
