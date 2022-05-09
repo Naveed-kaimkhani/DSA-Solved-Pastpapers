@@ -84,20 +84,17 @@ public class Q3_b_BinaryTree {
     }
 
     public boolean contains(Object t) {
-        if (root == t)
-            return true;
-        boolean present = false;
-        if (left != null) {
-            if (left.toString().contains(t.toString()))
+        if (root == t) return true;
+        
+        if (left != null)
+            if (left.contains(t))
                 return true;
-            present = left.contains(t);
-        }
-        if (right != null) {
-            if (right.toString().contains(t.toString()))
+        
+        if (right != null) 
+            if (right.contains(t))
                 return true;
-            present = right.contains(t);
-        }
-        return present;
+        
+        return false;
     }
   
 public static void main(String[] args) {
