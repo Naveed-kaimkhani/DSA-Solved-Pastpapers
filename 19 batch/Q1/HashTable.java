@@ -16,10 +16,10 @@ public class HashTable {
     }
 
     HashTable(int capacity){
-    entries=new entries[capacity];
+    entries=new Entry[capacity];
     this.LoadFactor=0.75;
     }
-    HashTable{
+    HashTable(){
         this(101);
     }
 
@@ -27,7 +27,7 @@ public class HashTable {
         Object key, value;
 
         Entry(Object key, Object value) {
-            this.Key = key;
+            this.key = key;
             this.value = value;
 
         }
