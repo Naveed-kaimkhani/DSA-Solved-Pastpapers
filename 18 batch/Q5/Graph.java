@@ -27,25 +27,28 @@ public class Graph {
 			if(vertices[i].equals(s))
 				return i;
 		}
-		return a.length;
+		throw new IllegalArgumentException("Wrong values to be added!");
+		
+		//This line of code will throw ArrayOutOfBounds Exception!!!
+		//return a.length;
 	}
 
 	
 	public String toString(){
-		if(size==0)return "()";
+		if(size==0) return "{}";
+		
 		StringBuffer buf=new StringBuffer("{"+vertex(0));
-		for (int i = 1; i < size; i++) {
+		
+		for (int i = 1; i < size; i++)
 			buf.append(", "+vertex(i));
-		}
+		
 		return buf+"}";
 	}
 	private String vertex(int i){
 			StringBuffer buf=new StringBuffer(vertices[i]+":");
-			for (int j = 0; j <size; j++) {
-				if (a[i][j]) {
+			for (int j = 0; j <size; j++)
+				if (a[i][j])
 					buf.append(" "+vertices[j]);
-				}
-				}
 			
 			return buf+"";
 	}
