@@ -5,7 +5,7 @@ import javax.swing.text.AbstractDocument.BranchElement;
 // Hashing with linear probing
 
 public class HashTable {
-    private static final HashTable.Entry NIL = null;
+    private static final Entry NIL = new Entry(null, null);
     private Entry[] entries;
     static int size, used;
     private double LoadFactor;
@@ -15,23 +15,26 @@ public class HashTable {
         this.LoadFactor = LoadFactor;
     }
 
-    // Hashtable(int capacity){
-    // entries=new entries[capacity];
-    // this.LoadFactor=0.75;
-    // }
+    HashTable(int capacity){
+    entries=new Entry[capacity];
+    this.LoadFactor=0.75;
+    }
+    HashTable(){
+        this(101);
+    }
 
     class Entry {
-        Object Key, value;
+        Object key, value;
 
         Entry(Object key, Object value) {
-            this.Key = key;
+            this.key = key;
             this.value = value;
 
         }
     }
 
     private int hash(Object key) {
-        return (key.hashCode() & 0xFFFFFFF) % entries.length;
+        return (key.hashCode() & 0x7FFFFFFF) % entries.length;
     }
 
     public int size() {
@@ -43,6 +46,10 @@ public class HashTable {
             rehash();
         int h = hash(key);
         for (int i = 0; i < entries.length; i++) {
+            
+            //For quadratic probing replace i with square of i
+            //int j = (h + i*i) % entries.length;
+            
             int j = (h + i) % entries.length;
             // int j = nextProbe(h,i);
             Entry entry = entries[j];
@@ -64,7 +71,7 @@ public class HashTable {
                 break;
             if (entry == NIL)
                 continue;
-            if (entry.Key.equals(key)) {
+            if (entry.key.equals(key)) {
                 return entry.value;
             }
         }
@@ -77,7 +84,7 @@ public class HashTable {
             int j = (h + i) % entries.length;
             if (entries[i] == null)
                 break;
-            if (entries[j].Key.equals(key)) {
+            if (entries[j].key.equals(key)) {
                 Object value = entries[j].value;
                 entries[j] = NIL;
                 --size;
@@ -93,9 +100,9 @@ public class HashTable {
         for (int k = 0; k < oldentries.length; k++) {
             Entry entry = oldentries[k];
 
-            if (entry == null)
+            if (entry == null || entry == NIL)
                 continue;
-            int h = hash(entry.Key);
+            int h = hash(entry.key);
 
             for (int i = 0; i < entries.length; i++) {
                 int j = (h+i)% entries.length;
