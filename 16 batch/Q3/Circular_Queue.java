@@ -9,7 +9,7 @@ interface LinkedListCircular_Queue {
 
 public class Circular_Queue implements LinkedListCircular_Queue {
     Node head = new Node();
-    int size;
+    int size;//fff
 //dafaf
     public class Node {
         Object data;//hllo worlds
