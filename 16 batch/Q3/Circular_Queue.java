@@ -12,7 +12,7 @@ public class Circular_Queue implements LinkedListCircular_Queue {
     int size;
 
     public class Node {
-        Object data;
+        Object data;//hllo worlds
         Node next;
         Node prev;
 
